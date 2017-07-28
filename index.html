@@ -556,9 +556,9 @@
 <li>对现有工程中的模块进行划分，方便之后文件结构的安排和工程底层框架的搭建</li>
 <li>模块划分也有利于调整思路，更清晰的认识整体和局部，对之后的工作有着事半功倍的作用</li>
 </ul>
-<h5 id="模块划分图"><a href="#模块划分图" class="headerlink" title="模块划分图"></a>模块划分图</h5><p><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section1/1.png" alt="飞科智能模块划分"></p>
+<h5 id="模块划分图"><a href="#模块划分图" class="headerlink" title="模块划分图"></a>模块划分图</h5><p><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section1/1.png?raw=true" alt="飞科智能模块划分"></p>
 <p><code>图中主要有四个分支，其中三个分支较为固定，其中包括：个人中心、账户和商城，设备管理是最重要的一个分支，工程中大部分操作和功能都是围绕设备进行的</code></p>
-<h5 id="由模块划分得出的文件结构图如下"><a href="#由模块划分得出的文件结构图如下" class="headerlink" title="由模块划分得出的文件结构图如下"></a>由模块划分得出的文件结构图如下</h5><p><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section1/2.png" alt="飞科智能文件结构图"><br><code>文件结构体现模块划分，一个好的文件结构可以体现出工程的功能模块和结构设计</code></p>
+<h5 id="由模块划分得出的文件结构图如下"><a href="#由模块划分得出的文件结构图如下" class="headerlink" title="由模块划分得出的文件结构图如下"></a>由模块划分得出的文件结构图如下</h5><p><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section1/2.png?raw=true" alt="飞科智能文件结构图"><br><code>文件结构体现模块划分，一个好的文件结构可以体现出工程的功能模块和结构设计</code></p>
 <h5 id="对于文件结构的几个思考"><a href="#对于文件结构的几个思考" class="headerlink" title="对于文件结构的几个思考"></a>对于文件结构的几个思考</h5><ul>
 <li>对于StoryBoard的思考<ul>
 <li>StoryBoard是可视化的图形界面编辑载体，在页面跳转逻辑上也有非常清晰的体现。其优点是显而易见的，但是在多人合作开发过程中其不足也是非常令人苦恼的，由于多人合作开发难免会同时操作StoryBoard文件，文件冲突也会时常发生，对于这点要解决最为直接的方法就是将StoryBoard进行合理的拆分，拆分后StoryBoard一部分优点也就会随之消失，但是这仍然是可以接受的。既然要拆分，那现在要思考的就是拆分后StoryBoard文件的存放位置，是集中存放还是分页面与控制器放在一起，其优缺点当然也是有的，目前我个人比较倾向于拆分后和页面控制器放在一起，既然拆分后在页面跳转逻辑上清晰可见的优点已经受到很大的影响，那么和页面控制器放在一起不但方便开发，也同样不容易发生文件冲突。</li>
