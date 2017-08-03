@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift从0到1," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Cocoapods介绍开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等。手动一个个去下载所需类库十分麻烦，另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，同样也特别麻烦。 CocoaPods应该是iOS最常用最有名的类库管理工具了，通过cocoaPods，只需要一行命令就可以完全解决，当然前提是你必须正确设置">
+<meta name="keywords" content="Swift从0到1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三周：Cocoapods和一些常用的第三方框架">
+<meta property="og:url" content="http://flycoit.com/2017/08/03/第三周-cocoapods和第三方框架/index.html">
+<meta property="og:site_name" content="飞科智能">
+<meta property="og:description" content="Cocoapods介绍开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等。手动一个个去下载所需类库十分麻烦，另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，同样也特别麻烦。 CocoaPods应该是iOS最常用最有名的类库管理工具了，通过cocoaPods，只需要一行命令就可以完全解决，当然前提是你必须正确设置">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/837824-679c9cc9e7cae47c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-03T08:49:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第三周：Cocoapods和一些常用的第三方框架">
+<meta name="twitter:description" content="Cocoapods介绍开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等。手动一个个去下载所需类库十分麻烦，另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，同样也特别麻烦。 CocoaPods应该是iOS最常用最有名的类库管理工具了，通过cocoaPods，只需要一行命令就可以完全解决，当然前提是你必须正确设置">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/837824-679c9cc9e7cae47c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://flycoit.com/2017/08/03/第三周-cocoapods和第三方框架/"/>
+
+
+
+
+
+  <title>第三周：Cocoapods和一些常用的第三方框架 | 飞科智能</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">飞科智能</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">iOSAPP从0到1博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/08/03/第三周-cocoapods和第三方框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="maxmoo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞科智能">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第三周：Cocoapods和一些常用的第三方框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T15:02:22+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/03/第三周-cocoapods和第三方框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/03/第三周-cocoapods和第三方框架/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://upload-images.jianshu.io/upload_images/837824-679c9cc9e7cae47c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="飞科智能"></p>
+<h3 id="Cocoapods"><a href="#Cocoapods" class="headerlink" title="Cocoapods"></a>Cocoapods</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等。手动一个个去下载所需类库十分麻烦，另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，同样也特别麻烦。 CocoaPods应该是iOS最常用最有名的类库管理工具了，通过cocoaPods，只需要一行命令就可以完全解决，当然前提是你必须正确设置它。</p>
+<h4 id="下载和安装"><a href="#下载和安装" class="headerlink" title="下载和安装"></a>下载和安装</h4><p>在安装CocoaPods之前，首先要在本地安装好Ruby环境。如果你使用的是Mac OS X，那么Ruby运行环境是自带的，你可以打开终端输入以下指令查看Ruby的版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ruby -v</div></pre></td></tr></table></figure>
+<p>在Ruby环境正确安装的情况下安装Cocoapods也将十分简单。 在终端中输入指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem install cocoapods</div></pre></td></tr></table></figure>
+<p>如果输入指令后发现速度非常慢，别着急，在国内这是正常的（原因也都知道）。这时候可以使用淘宝的Ruby镜像访问Cocoapods，先使用下面的指令查看Ruby镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem sources -l</div></pre></td></tr></table></figure>
+<p>如果出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*** CURRENT SOURCES ***</div><div class="line">https://rubygems.org/</div></pre></td></tr></table></figure>
+<p>那么需要更换成淘宝的镜像，如果出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*** CURRENT SOURCES ***</div><div class="line">https://ruby.taobao.org/</div></pre></td></tr></table></figure>
+<p>那么就不需要更换Ruby镜像了。</p>
+<p>更换Ruby镜像使用下面的指令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem sources --remove https://rubygems.org/</div><div class="line">//等有反应之后再敲入以下命令</div><div class="line">gem sources -a http://ruby.taobao.org/</div></pre></td></tr></table></figure>
+<p>更换完成之后再次验证你的Ruby镜像是且仅是taobao</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem sources -l</div></pre></td></tr></table></figure>
+<p>只有在终端中出现下面文字才表明你上面的命令是成功的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">*** CURRENT SOURCES ***</div><div class="line">https://ruby.taobao.org/</div></pre></td></tr></table></figure>
+<ul>
+<li>这时候再次在终端运行：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem install cocoapods</div></pre></td></tr></table></figure>
+<p>不出问题，等上1分钟左右，Cocoapods就可以在本地下载并安装好了，不在需要其他设置。如果中途出现错误，可自行百度或者Google，都能很快的解决问题，这里就不一一列举了。</p>
+<h4 id="使用Cocoapods"><a href="#使用Cocoapods" class="headerlink" title="使用Cocoapods"></a>使用Cocoapods</h4><h5 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h5><p>使用Cocoapods搜索类库，以下使用AFNetworking为例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod search AFNetworking</div></pre></td></tr></table></figure>
+<p>等待几秒后，终端会看到关于AFNetworking类库的一些信息。<br>其他的一些指令可以使用<code>pod --help</code>查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">+ cache         Manipulate the CocoaPods cache</div><div class="line">+ deintegrate   Deintegrate CocoaPods from your project</div><div class="line">+ env           Display pod environment</div><div class="line">+ init          Generate a Podfile for the current directory</div><div class="line">+ install       Install project dependencies according to versions from a</div><div class="line">                Podfile.lock</div><div class="line">+ ipc           Inter-process communication</div><div class="line">+ lib           Develop pods</div><div class="line">+ list          List pods</div><div class="line">+ outdated      Show outdated project dependencies</div><div class="line">+ plugins       Show available CocoaPods plugins</div><div class="line">+ repo          Manage spec-repositories</div><div class="line">+ search        Search for pods</div><div class="line">+ setup         Setup the CocoaPods environment</div><div class="line">+ spec          Manage pod specs</div><div class="line">+ trunk         Interact with the CocoaPods API (e.g. publishing new specs)</div><div class="line">+ try           Try a Pod!</div><div class="line">+ update        Update outdated project dependencies and create new</div><div class="line">                Podfile.lock</div></pre></td></tr></table></figure>
+<h5 id="运用到具体的项目中"><a href="#运用到具体的项目中" class="headerlink" title="运用到具体的项目中"></a>运用到具体的项目中</h5><p>在文件根目录新建文件命名为<code>Podfile</code>不要有后缀，使用Xcode打开或者使用其他编辑器（不要使用自带的文本编辑）打开并编辑：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</div><div class="line"></div><div class="line">platform:ios,&apos;8.0&apos;</div><div class="line">use_frameworks!</div><div class="line"># ignore all warnings from all pods</div><div class="line">inhibit_all_warnings!</div><div class="line"></div><div class="line">def pods</div><div class="line">    #Swift</div><div class="line">    pod &apos;Alamofire&apos;, &apos;~&gt; 4.0&apos;</div><div class="line">    #Objective-C</div><div class="line">    pod &apos;AFNetworking&apos;, &apos;~&gt; 3.1.0&apos;</div><div class="line">end</div><div class="line"></div><div class="line">target &apos;你的项目名称&apos; do</div><div class="line">    pods</div><div class="line">end</div><div class="line"></div><div class="line">post_install do |installer|</div><div class="line">    installer.pods_project.targets.each do |target|</div><div class="line">        target.build_configurations.each do |config|</div><div class="line">            config.build_settings[&apos;ENABLE_BITCODE&apos;] = &apos;YES&apos;</div><div class="line">            config.build_settings[&apos;SWIFT_VERSION&apos;] = &apos;3.0&apos;</div><div class="line">        end</div><div class="line">    end</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>保存完成后打开终端，使用终端进入项目根目录，执行指令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod install</div></pre></td></tr></table></figure></p>
+<p>不出现错误的情况下第三方框架就已经加载到你的项目中了。</p>
+<p>如果在使用<code>pod install</code>卡住时，可使用指令<code>pod install --verbose --no-repo-update</code>或者<code>pod update</code></p>
+<h3 id="常用开源第三方"><a href="#常用开源第三方" class="headerlink" title="常用开源第三方"></a>常用开源第三方</h3><h5 id="图片请求和缓存"><a href="#图片请求和缓存" class="headerlink" title="图片请求和缓存"></a>图片请求和缓存</h5><ul>
+<li><a href="https://github.com/onevcat/Kingfisher" target="_blank" rel="external">[Kingfisher]</a>:onevcat写的图片请求和缓存</li>
+</ul>
+<h5 id="数据解析"><a href="#数据解析" class="headerlink" title="数据解析"></a>数据解析</h5><ul>
+<li><a href="https://github.com/SwiftyJSON/SwiftyJSON" target="_blank" rel="external">[SwiftyJSON]</a>:Swift 界 JSON 解析之王</li>
+</ul>
+<h5 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h5><ul>
+<li><a href="https://github.com/Alamofire/Alamofire" target="_blank" rel="external">[Alamofire]</a>: Alamofire是AFNetworking的作者mattt新写的网络请求的swift库。</li>
+</ul>
+<h5 id="数据库缓存"><a href="#数据库缓存" class="headerlink" title="数据库缓存"></a>数据库缓存</h5><ul>
+<li><a href="https://github.com/realm/realm-cocoa" target="_blank" rel="external">[realm-cocoa]</a>:一个号称要代替Core Data &amp; SQLite的用于移动端的数据库，非常不错👍👍👍 ，同时支持Objective-C.</li>
+<li><a href="https://github.com/stephencelis/SQLite.swift" target="_blank" rel="external">[SQLite.swift]</a>:纯swift实现的类型安全的SQLite3封装，数据存储和JSON解析是永恒的话题。</li>
+</ul>
+<h5 id="下拉刷新"><a href="#下拉刷新" class="headerlink" title="下拉刷新"></a>下拉刷新</h5><ul>
+<li><a href="https://github.com/fruitcoder/ReplaceAnimation" target="_blank" rel="external">[ReplaceAnimation]</a>:动画很赞的下拉刷新控件</li>
+<li><a href="https://github.com/eggswift/pull-to-refresh" target="_blank" rel="external">[pull-to-refresh]</a>:简洁实用的下拉刷新</li>
+<li><a href="https://github.com/dasdom/BreakOutToRefresh" target="_blank" rel="external">[BreakOutToRefresh]</a>:可以一边玩游戏一边刷新的下拉刷新控件，动画很赞。</li>
+</ul>
+<h5 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h5><ul>
+<li><a href="https://github.com/danielgindi/Charts" target="_blank" rel="external">[Charts]</a>:一款优秀的图表开源库 MPAndroidChart 的 Swift 语言实现版（支持 Objective-C 和 Swift 调用）。</li>
+<li><a href="https://github.com/kishikawakatsumi/SpreadsheetView" target="_blank" rel="external">[SpreadsheetView]</a>:很棒的电子表格库. 可以完全配置的电子表格View,使用此库你能很容易的创建出复杂布局的表格，比如时间表、甘特图、课程表，就像你使用Excel一样</li>
+<li><a href="https://github.com/philackm/ScrollableGraphView" target="_blank" rel="external">[ScrollableGraphView]</a>:灵动感十足的自适应、可定制滚动曲（折）线图表库</li>
+</ul>
+<h5 id="类别"><a href="#类别" class="headerlink" title="类别"></a>类别</h5><ul>
+<li><a href="https://github.com/hilen/TimedSilver" target="_blank" rel="external">[TimedSilver]</a>:类别</li>
+</ul>
+<h4 id="Swift第三方开源整理"><a href="#Swift第三方开源整理" class="headerlink" title="Swift第三方开源整理"></a><a href="https://github.com/Tim9Liu9/TimLiu-iOS/blob/master/Swift.md" target="_blank" rel="external">Swift第三方开源整理</a></h4>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift从0到1/" rel="tag"># Swift从0到1</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/27/第二周-代码规范/" rel="next" title="第二周：Swift代码书写规范">
+                <i class="fa fa-chevron-left"></i> 第二周：Swift代码书写规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="maxmoo" />
+          <p class="site-author-name" itemprop="name">maxmoo</p>
+           
+              <p class="site-description motion-element" itemprop="description">iOSAPP从0到1博客</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cocoapods"><span class="nav-number">1.</span> <span class="nav-text">Cocoapods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载和安装"><span class="nav-number">1.2.</span> <span class="nav-text">下载和安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Cocoapods"><span class="nav-number">1.3.</span> <span class="nav-text">使用Cocoapods</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用指令"><span class="nav-number">1.3.1.</span> <span class="nav-text">常用指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运用到具体的项目中"><span class="nav-number">1.3.2.</span> <span class="nav-text">运用到具体的项目中</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用开源第三方"><span class="nav-number">2.</span> <span class="nav-text">常用开源第三方</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#图片请求和缓存"><span class="nav-number">2.0.1.</span> <span class="nav-text">图片请求和缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据解析"><span class="nav-number">2.0.2.</span> <span class="nav-text">数据解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#网络请求"><span class="nav-number">2.0.3.</span> <span class="nav-text">网络请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库缓存"><span class="nav-number">2.0.4.</span> <span class="nav-text">数据库缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下拉刷新"><span class="nav-number">2.0.5.</span> <span class="nav-text">下拉刷新</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图表"><span class="nav-number">2.0.6.</span> <span class="nav-text">图表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类别"><span class="nav-number">2.0.7.</span> <span class="nav-text">类别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Swift第三方开源整理"><span class="nav-number">2.1.</span> <span class="nav-text">Swift第三方开源整理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">maxmoo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maxmoo.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://flycoit.com/2017/08/03/第三周-cocoapods和第三方框架/';
+          this.page.identifier = '2017/08/03/第三周-cocoapods和第三方框架/';
+          this.page.title = '第三周：Cocoapods和一些常用的第三方框架';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maxmoo.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -247,6 +247,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/08/03/第三周-cocoapods和第三方框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="maxmoo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞科智能">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/第三周-cocoapods和第三方框架/" itemprop="url">第三周：Cocoapods和一些常用的第三方框架</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T15:02:22+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/03/第三周-cocoapods和第三方框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/03/第三周-cocoapods和第三方框架/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+Cocoapods介绍开发iOS应用时，会经常使用到很多第三方开源类库，比如JSONKit，AFNetWorking等。手动一个个去下载所需类库十分麻烦，另外一种常见情况是，你项目中用到的类库有更新，你必须得重新下载新版本，重新加入到项目中，同样也特别麻烦。 CocoaPods应该是iOS最常用最有名的类库管理工具了，通过cocoaPods，只需要一行命令就可以完全解决，当然前提是你必须正确设置它。
+下载和安装在安装CocoaPods之前，首先要在本地安装好Ruby环境。如果你使用的是Mac OS X，那么Ruby运行环境是自带的，你可以打开终端输入以下指令查看Ruby的版本。
+1ruby -v
+在Ruby环境正确安装的情况下安装Cocoapods也将十分简单。 在终端中输入指令：
+1sudo gem install cocoapods
+如果输入指令后发现速度非常慢，别着急，在国内这是正
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/03/第三周-cocoapods和第三方框架/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/07/27/第二周-代码规范/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -326,123 +461,27 @@
       
         
           
-            <p><img src="http://upload-images.jianshu.io/upload_images/837824-679c9cc9e7cae47c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="飞科智能"></p>
-<p>注意：代码中存在换行和缩进不规范的问题</p>
-<h3 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h3><h5 id="通用"><a href="#通用" class="headerlink" title="通用"></a>通用</h5><ul>
-<li>禁止使用拼音命名</li>
-<li>多个相似命名中禁止出现类似<code>lab1、lab2、lab3</code>的情况</li>
-<li>尽量避免“简称”和“缩略词”，通用缩略词应该整体大写或整体小写</li>
-<li>使用驼峰式命名方式，命名使用小写字母开头，常量最好使用k开头</li>
-</ul>
-<p><code>推荐:</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">private let maximumWidgetCount = 100</div><div class="line">class WidgetContainer &#123;</div><div class="line">           var widgetButton: UIButton</div><div class="line">           let widgetHeightPercentage = 0.85</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let urlString: URLString</div><div class="line">let userID: UserID</div></pre></td></tr></table></figure>
-<p><code>不推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let MAX_WIDGET_COUNT = 100</div><div class="line">class app_widgetContainer &#123;</div><div class="line">           var wBut: UIButton</div><div class="line">           let wHeightPct = 0.85</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let uRLString: UrlString</div><div class="line">let userId: UserId</div></pre></td></tr></table></figure>
-<ul>
-<li>命名是做到见名知意，尽量少使用全局变量</li>
-<li>一个变量有且只有一个功能，尽量不要把一个变量作为多种用途</li>
-<li>每个枚举值用小写字母开始</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">enum Shape &#123;</div><div class="line">        case rectangle</div><div class="line">        case square</div><div class="line">        case rightTriangle</div><div class="line">        case equilateralTriangle</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><a href="https://swift.org/documentation/api-design-guidelines/#promote-clear-usage" target="_blank" rel="external">官方命名规范查阅</a></li>
-</ul>
-<h5 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h5><ul>
-<li>工程文件命名禁止使用中文，首字母大写</li>
-<li>资源文件命名（图片、文件等），首字母小写，且统一家里在资源文件中</li>
-<li>创建新文件夹时必须保证工程目录与finder中的文件目录统一，且在工程中一般使用group</li>
-</ul>
-<h3 id="格式规范"><a href="#格式规范" class="headerlink" title="格式规范"></a>格式规范</h3><h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><ul>
-<li>函数尽量控制入参数量，最好有必要的入参，尽量少使用无入参方法名</li>
-<li>单个方法体不应超过100行，超过100行需重构</li>
-<li>方法与方法之间需空行，方法内的局部变量和方法的第一条语句之间需空行</li>
-<li>当调用的函数有多个参数时，每一个参数另起一行，并比函数名多一个缩进           </li>
-</ul>
-<h5 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h5><ul>
-<li>文档注释、块注释或单行注释之前，引用包注释可以不用空行</li>
-<li>变量注释尽量写在变量的后面，对齐</li>
-<li>实现文件中.函数的注释用<code>#MARK - description -</code></li>
-<li>代码难以理解处添加注释</li>
-<li>对于负责的类，在描述类的使用方法时可以添加一些合适的例子，请注意Swift注释是支持 MarkDown 语法的</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">  ##功能列表</div><div class="line"> 这个类提供下一下很赞的功能，如下:</div><div class="line"> - 功能 1</div><div class="line"> - 功能 2</div><div class="line"> - 功能 3</div><div class="line"> ## 例子</div><div class="line"> 这是一个代码块使用四个空格作为缩进的例子。</div><div class="line">     let myAwesomeThing = MyAwesomeClass()</div><div class="line">     myAwesomeThing.makeMoney()</div><div class="line"> ## 警告</div><div class="line"> 使用的时候总注意以下几点</div><div class="line"> 1. 第一点</div><div class="line"> 2. 第二点</div><div class="line"> 3. 第三点</div><div class="line"> */</div><div class="line">class MyAwesomeClass &#123;</div><div class="line">    /* ... */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="代码的排列"><a href="#代码的排列" class="headerlink" title="代码的排列"></a>代码的排列</h5><ul>
-<li>类遵循代理,写在<code>MyClass{}</code>的下方,使用<code>Extension</code>,       例如:<code>extension MyClass: UITableViewDelegate{}</code></li>
-</ul>
-<p><code>推荐:</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class MyViewcontroller: UIViewController &#123; </div><div class="line">// class stuff here </div><div class="line">&#125;</div><div class="line"> // MARK: - UITableViewDataSource </div><div class="line">extension MyViewcontroller: UITableViewDataSource &#123; </div><div class="line">// table view data source methods</div><div class="line"> &#125;</div><div class="line"> // MARK: - UIScrollViewDelegate </div><div class="line">extension MyViewcontroller: UIScrollViewDelegate &#123;</div><div class="line"> // scroll view delegate methods</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<p><code>不推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class MyViewcontroller: UIViewController, UITableViewDataSource, UIScrollViewDelegate &#123;</div><div class="line">  // all methods</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>控制器之间的跳转方法写在<code>MyClass</code>的作用域的最后</li>
-<li>构造方法和生命周期写在成员变量的下方</li>
-<li>对<code>UIKit view controllers</code>，将<code>lifecycle</code>,<code>custom accessors</code>, <code>and IBAction</code>等方法单独放在一个 <code>class extension</code>中</li>
-<li>无用的code ，包括 Xcode 注释都应该被移除。空方法应该被移除</li>
-</ul>
-<p><code>推荐:</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int &#123;</div><div class="line">             return Database.contacts.count</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>不推荐:</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">override func didReceiveMemoryWarning() &#123; </div><div class="line">           super.didReceiveMemoryWarning() </div><div class="line"> &#125; </div><div class="line">override func numberOfSectionsInTableView(tableView: UITableView) -&gt; Int &#123; </div><div class="line">// #warning Incomplete implementation, return the number of sections </div><div class="line">           return 1 </div><div class="line">&#125; </div><div class="line">override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int &#123;</div><div class="line"> // #warning Incomplete implementation, return the number of rows </div><div class="line">           return Database.contacts.count </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>可以用命令<code>Ctrl+I</code>重新排列代码</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h5 id="运算符与变量间的空格"><a href="#运算符与变量间的空格" class="headerlink" title="运算符与变量间的空格"></a>运算符与变量间的空格</h5><ul>
-<li>一元运算符与变量之间无空格,二元运算符与变量之间必须有空格</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">!bValue</div><div class="line">~iValue</div><div class="line">++iCount</div><div class="line">*strSource</div><div class="line">&amp;fSum</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fWidth = 5 + 5</div><div class="line">fLength = fWidth * 2</div><div class="line">fHeight = fWidth + fLength</div></pre></td></tr></table></figure>
-<h5 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h5><ul>
-<li>必须列出所有分支（穷举所有情况），每一个分支必须给出明确的结果</li>
-<li>连续分支间使用<code>if else</code>连接</li>
-</ul>
-<p><code>推荐:</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if count &lt; 3 &#123;</div><div class="line">           copyString = &quot;Hello&quot;</div><div class="line">&#125;else&#123;</div><div class="line">           copyString = &quot;&quot;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>不推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if count &lt; 3 &#123;</div><div class="line">           copyString = &quot;Hello&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var weight: Int = 30</div><div class="line">if weight &gt;= 10 &#123;</div><div class="line">//TODO</div><div class="line">&#125;</div><div class="line">if weight &lt; 10 &#123;</div><div class="line">//TODO</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>不要使用过多的分支，善于使用<code>return</code>提前返回错误</li>
-</ul>
-<p><code>推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">func customMethod()&#123;</div><div class="line">           if x &lt; 0 &#123;</div><div class="line">                return</div><div class="line">           &#125;</div><div class="line">//TODO</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">guard n.isNumber else &#123;</div><div class="line">          return</div><div class="line">&#125;</div><div class="line">// Use n here</div></pre></td></tr></table></figure>
-<p><code>不推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">func customMethod()&#123;</div><div class="line">          if x &gt;= 0 &#123;</div><div class="line">          //TODO</div><div class="line">          &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>多个条件判断时，不要多个if嵌套，用 guard</li>
-</ul>
-<p><code>推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">func computeFFT(context: Context?, inputData: InputData?) throws -&gt; Frequencies &#123; </div><div class="line">          guard let context = context else &#123; throw FFTError.noContext &#125; </div><div class="line">          guard let inputData = inputData else &#123; throw FFTError.noInputData &#125; </div><div class="line">          // use context and input to compute the frequencies </div><div class="line">          return frequencies </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>不推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">func computeFFT(context: Context?, inputData: InputData?) throws -&gt; Frequencies &#123;</div><div class="line">           if let context = context &#123; </div><div class="line">                    if let inputData = inputData &#123; </div><div class="line">                    // use context and input to compute the frequencies </div><div class="line">                              return frequencies </div><div class="line">                    &#125; else &#123; </div><div class="line">                              throw FFTError.noInputData </div><div class="line">                    &#125;</div><div class="line">           &#125; else &#123;</div><div class="line">                     throw FFTError.noContext</div><div class="line">           &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>如果需要把访问修饰符放到第一个位置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 推荐</div><div class="line">private static let kMyPrivateNumber: Int</div><div class="line">// 不推荐</div><div class="line">static private let kMyPrivateNumber: Int</div></pre></td></tr></table></figure>
-<ul>
-<li>声明单例属性可以通过下面方式进行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class PirateManager &#123;</div><div class="line">    static let sharedInstance = PirateManager()</div><div class="line">    /* ... */</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>避免使用<code>self</code>去调用属性或方法,仅在初始化方法的参数名和属性名相同时用<code>self</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class BoardLocation &#123; </div><div class="line">          let row: Int, column: Int </div><div class="line">          init(row: Int, column: Int) &#123; </div><div class="line">              self.row = row </div><div class="line">              self.column = column </div><div class="line">              let closure = &#123; </div><div class="line">                   print(self.row) </div><div class="line">              &#125; </div><div class="line">         &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>如果一个计算属性的返回值很简单，可以省去 get{}。有 set{} 就一定要有 get{}</li>
-</ul>
-<p><code>推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var diameter: Double &#123;</div><div class="line">        return radius * 2</div><div class="line">&#125;</div><div class="line">var myGreatProperty: Int &#123;</div><div class="line">	    return 4</div><div class="line">&#125;</div><div class="line">subscript(index: Int) -&gt; T &#123;</div><div class="line">        return objects[index]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>不推荐：</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var diameter: Double &#123;</div><div class="line">         get &#123;</div><div class="line">               return radius * 2</div><div class="line">         &#125;</div><div class="line">&#125;</div><div class="line">var myGreatProperty: Int &#123;</div><div class="line">	      get &#123;</div><div class="line">		       return 4</div><div class="line">	      &#125;</div><div class="line">&#125;</div><div class="line">subscript(index: Int) -&gt; T &#123;</div><div class="line">          get &#123;</div><div class="line">              return objects[index]</div><div class="line">          &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="后记："><a href="#后记：" class="headerlink" title="后记："></a>后记：</h3><ul>
-<li>初版比较粗糙，文档会在之后更多的实践中增加和修改</li>
-<li>如有错误或不当的地方欢迎留言指正，在此感谢！</li>
-</ul>
-<h3 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h3><p><a href="https://github.com/github/swift-style-guide" target="_blank" rel="external">https://github.com/github/swift-style-guide</a><br><a href="http://www.jianshu.com/p/288ea00dcfcf" target="_blank" rel="external">http://www.jianshu.com/p/288ea00dcfcf</a> </p>
-
           
+注意：代码中存在换行和缩进不规范的问题
+命名规范通用
+禁止使用拼音命名
+多个相似命名中禁止出现类似lab1、lab2、lab3的情况
+尽量避免“简称”和“缩略词”，通用缩略词应该整体大写或整体小写
+使用驼峰式命名方式，命名使用小写字母开头，常量最好使用k开头
+
+推荐:
+12345private let maximumWidgetCount = 100class WidgetContainer &#123;           var widgetButton: UIButton           let widgetHeightPercentage = 0.85&#125;
+12let urlString: URLStringlet userID: UserID
+不推荐：
+12345let MAX_WIDGET_COUNT = 100class app_widgetContainer 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/27/第二周-代码规范/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -484,7 +523,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/07/21/第一周：模块划分和文件结构的确立/">
+    <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/07/21/第一周-模块划分和文件结构的确立/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="maxmoo">
@@ -503,7 +542,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/21/第一周：模块划分和文件结构的确立/" itemprop="url">第一周：模块划分和文件结构的确立</a></h1>
+                <a class="post-title-link" href="/2017/07/21/第一周-模块划分和文件结构的确立/" itemprop="url">第一周：模块划分和文件结构的确立</a></h1>
         
 
         <div class="post-meta">
@@ -534,9 +573,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/07/21/第一周：模块划分和文件结构的确立/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/21/第一周-模块划分和文件结构的确立/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/07/21/第一周：模块划分和文件结构的确立/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/21/第一周-模块划分和文件结构的确立/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -563,28 +602,25 @@
       
         
           
-            <p><img src="http://upload-images.jianshu.io/upload_images/837824-679c9cc9e7cae47c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="飞科智能"></p>
-<h3 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h3><ul>
-<li>对现有工程中的模块进行划分，方便之后文件结构的安排和工程底层框架的搭建</li>
-<li>模块划分也有利于调整思路，更清晰的认识整体和局部，对之后的工作有着事半功倍的作用</li>
-</ul>
-<h5 id="模块划分图"><a href="#模块划分图" class="headerlink" title="模块划分图"></a>模块划分图</h5><p><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section1/1.png?raw=true" alt="飞科智能模块划分"></p>
-<p><code>图中主要有四个分支，其中三个分支较为固定，其中包括：个人中心、账户和商城，设备管理是最重要的一个分支，工程中大部分操作和功能都是围绕设备进行的</code></p>
-<h5 id="由模块划分得出的文件结构图如下"><a href="#由模块划分得出的文件结构图如下" class="headerlink" title="由模块划分得出的文件结构图如下"></a>由模块划分得出的文件结构图如下</h5><p><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section1/2.png?raw=true" alt="飞科智能文件结构图"><br><code>文件结构体现模块划分，一个好的文件结构可以体现出工程的功能模块和结构设计</code></p>
-<h5 id="对于文件结构的几个思考"><a href="#对于文件结构的几个思考" class="headerlink" title="对于文件结构的几个思考"></a>对于文件结构的几个思考</h5><ul>
-<li>对于StoryBoard的思考<ul>
-<li>StoryBoard是可视化的图形界面编辑载体，在页面跳转逻辑上也有非常清晰的体现。其优点是显而易见的，但是在多人合作开发过程中其不足也是非常令人苦恼的，由于多人合作开发难免会同时操作StoryBoard文件，文件冲突也会时常发生，对于这点要解决最为直接的方法就是将StoryBoard进行合理的拆分，拆分后StoryBoard一部分优点也就会随之消失，但是这仍然是可以接受的。既然要拆分，那现在要思考的就是拆分后StoryBoard文件的存放位置，是集中存放还是分页面与控制器放在一起，其优缺点当然也是有的，目前我个人比较倾向于拆分后和页面控制器放在一起，既然拆分后在页面跳转逻辑上清晰可见的优点已经受到很大的影响，那么和页面控制器放在一起不但方便开发，也同样不容易发生文件冲突。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>第三方框架<ul>
-<li>工程中会用到很多现阶段较为稳定和方便的第三方框架，但是数量一多，时间一长就会出现各种各样的问题，比如说版本更新、需要修改源码等。解决这些问题可以将这些第三方分为两部分，以是否需要修改源码为判断因素（有人会问：我导入第三方的时候我又不知道需不需要更改其源码😓😓！），将需要修改的第三方下载手动加入到工程文件中，将不需要修改且更新较为重要第三方交由cocoapods管理。</li>
-</ul>
-</li>
-</ul>
-
           
+模块划分
+对现有工程中的模块进行划分，方便之后文件结构的安排和工程底层框架的搭建
+模块划分也有利于调整思路，更清晰的认识整体和局部，对之后的工作有着事半功倍的作用
+
+模块划分图
+图中主要有四个分支，其中三个分支较为固定，其中包括：个人中心、账户和商城，设备管理是最重要的一个分支，工程中大部分操作和功能都是围绕设备进行的
+由模块划分得出的文件结构图如下文件结构体现模块划分，一个好的文件结构可以体现出工程的功能模块和结构设计
+对于文件结构的几个思考
+对于StoryBoard的思考
+StoryBoard是可视化的图形界面编辑载体，在页面跳转逻辑上也有非常清晰的体现。其优点是显而易见的，但是在多人合作开发过程中其不足也是非常令人苦恼的，由于多人合作开发难免会同时操作StoryBoard文件，文件冲突也会时常发生，对于这点要解决最为直接的方法就是将StoryBoard进行合理的拆分，拆分后Stor
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/21/第一周-模块划分和文件结构的确立/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -663,7 +699,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
