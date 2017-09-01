@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Swift从0到1," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="###目的  针对于具体项目有较完善和较方便的网络请求方案 具有统一管理请求，统一管理请求错误的能力 提高网络接口的阅读性和易更改性 清晰的模块划分，方便之后的迁移和功能添加    ###应实现功能  请求入口的单一化，方便管理和修改 接口的灵活性，可设置请求超时时间(有默认值)，请求结果分为成功和失败两个闭包，可以取消单一请求 请求失败时有重新请求机制，与缓存的兼容性，与数据模型的易连接和转化">
+<meta name="keywords" content="Swift从0到1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四周：Alamofire网络框架之二次封装">
+<meta property="og:url" content="http://flycoit.com/2017/08/25/第四周-网络框架/index.html">
+<meta property="og:site_name" content="飞科智能">
+<meta property="og:description" content="###目的  针对于具体项目有较完善和较方便的网络请求方案 具有统一管理请求，统一管理请求错误的能力 提高网络接口的阅读性和易更改性 清晰的模块划分，方便之后的迁移和功能添加    ###应实现功能  请求入口的单一化，方便管理和修改 接口的灵活性，可设置请求超时时间(有默认值)，请求结果分为成功和失败两个闭包，可以取消单一请求 请求失败时有重新请求机制，与缓存的兼容性，与数据模型的易连接和转化">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.zcool.cn/community/01861c554462c60000019ae9e71330.jpg@2o.jpg">
+<meta property="og:updated_time" content="2017-09-01T07:01:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第四周：Alamofire网络框架之二次封装">
+<meta name="twitter:description" content="###目的  针对于具体项目有较完善和较方便的网络请求方案 具有统一管理请求，统一管理请求错误的能力 提高网络接口的阅读性和易更改性 清晰的模块划分，方便之后的迁移和功能添加    ###应实现功能  请求入口的单一化，方便管理和修改 接口的灵活性，可设置请求超时时间(有默认值)，请求结果分为成功和失败两个闭包，可以取消单一请求 请求失败时有重新请求机制，与缓存的兼容性，与数据模型的易连接和转化">
+<meta name="twitter:image" content="http://img.zcool.cn/community/01861c554462c60000019ae9e71330.jpg@2o.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://flycoit.com/2017/08/25/第四周-网络框架/"/>
+
+
+
+
+
+  <title>第四周：Alamofire网络框架之二次封装 | 飞科智能</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">飞科智能</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">iOSAPP从0到1博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/08/25/第四周-网络框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="maxmoo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞科智能">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第四周：Alamofire网络框架之二次封装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T15:02:22+08:00">
+                2017-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/25/第四周-网络框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/25/第四周-网络框架/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://img.zcool.cn/community/01861c554462c60000019ae9e71330.jpg@2o.jpg" alt="dunk"></p>
+<p>###目的</p>
+<ul>
+<li>针对于具体项目有较完善和较方便的网络请求方案<ul>
+<li>具有统一管理请求，统一管理请求错误的能力</li>
+<li>提高网络接口的阅读性和易更改性</li>
+<li>清晰的模块划分，方便之后的迁移和功能添加</li>
+</ul>
+</li>
+</ul>
+<p>###应实现功能</p>
+<ul>
+<li>请求入口的单一化，方便管理和修改</li>
+<li>接口的灵活性，可设置请求超时时间(有默认值)，请求结果分为成功和失败两个闭包，可以取消单一请求</li>
+<li>请求失败时有重新请求机制，与缓存的兼容性，与数据模型的易连接和转化性</li>
+<li>考虑到请求下载或上传体积较大的文件，断点续传问题</li>
+<li>考虑到请求在不同环境下的请求测试问题</li>
+</ul>
+<p>###文件分配<br>    1，<code>FKRequestConfig</code>网络请求的配置文件，配置环境、baseURl…<br>    2，<code>FKRequestURL</code>请求的所有URL<br>    3，<code>FKRequestCentral</code>所有请求的入口和出口<br>    4，<code>FKRequestError</code>处理所有请求可能出现的错误解析和相应的日志记录<br>    5，<code>FKRequestManager</code>请求接口的实现文件，外部调用网络请求的直接接触类</p>
+<p>###具体实现</p>
+<ul>
+<li>配置文件<code>FKRequestConfig</code><br>首先先考虑到环境切换的问题，由于项目历时时间较长网络请求由之前的HTTP请求的测试环境和正式环境两个变成了现在的HTTP、HTTPS测试和正式四种环境<ul>
+<li>环境配置使用结构图实现</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">enum EnvironmentType: String &#123;</div><div class="line">    case formalEnvironmentHTTP  = &quot;http://xxxxxx&quot;   //正式环境http</div><div class="line">    case testEnvironmentHTTP    = &quot;http://zzzzzz&quot;  //测试环境http</div><div class="line">    case formalEnvironmentHTTPS = &quot;https://xxxxxx&quot;  //正式环境https</div><div class="line">    case testEnvironmentHTTPS   = &quot;https://zzzzzz&quot;  //测试环境https</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>将各自对应的URL作为绑定值，这个时候就需要有获取和设置环境的方法，也可以说是获取和设置baseURL的方法。新建一个类FKEnvironment，使用单例形式，再创建一个type属性用来存放环境配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">let kEnvironmentKey: String     = &quot;com.flyco.environment&quot;</div><div class="line">class FKEnvironment &#123;</div><div class="line">    //单例</div><div class="line">    static let sharedInstance = FKEnvironment()</div><div class="line">    //属性</div><div class="line">    //HTTP、HTTPS请求baseURL配置</div><div class="line">    var type: EnvironmentType &#123;</div><div class="line">        get&#123;</div><div class="line">            if UserDefaults.standard.value(forKey: kEnvironmentKey) != nil&#123;</div><div class="line">                let localEnvironmentType = EnvironmentType(rawValue:UserDefaults.standard.value(forKey: kEnvironmentKey)! as! String)</div><div class="line">                return localEnvironmentType!</div><div class="line">            &#125;else&#123;</div><div class="line">                return .formalEnvironmentHTTP</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        set(newType)&#123;</div><div class="line">            UserDefaults.standard.setValue(newType.rawValue, forKey: kEnvironmentKey)</div><div class="line">            UserDefaults.standard.synchronize()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>这样就大致实现了一个配置文件所需要的基础功能</p>
+</li>
+<li><p>接下来需要实现集中处理网络请求的类<code>FKRequestCentral</code></p>
+<ul>
+<li>考虑到这个类为所有请求的入口和出口，必须有较高的灵活性和包容性，必要的参数大致有：url、参数、超时时间、请求方式、请求成功返回闭包、请求失败返回闭包。且需要将请求Request返回，用于需要取消请求时可以方便的取消请求。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">class API &#123;</div><div class="line">    /**</div><div class="line">     *url:网络请求的URL</div><div class="line">     *params:请求参数</div><div class="line">     *timeout:请求超时时间，默认30s</div><div class="line">     *success:请求成功回调，已转为JSON格式</div><div class="line">     *failed:请求失败回调，返回FKError</div><div class="line">     *return:返回request，可用于取消特定网络请求，可忽略返回参数</div><div class="line">     */</div><div class="line">    @discardableResult</div><div class="line">    static func</div><div class="line">    start(url: String,</div><div class="line">          params: [String:Any],</div><div class="line">          method: RequestMethod,</div><div class="line">          timeout: Int = 30,</div><div class="line">          success: @escaping (JSON) -&gt; Void,</div><div class="line">          failed: @escaping (FKError) -&gt; Void) -&gt; DataRequest &#123;</div><div class="line">        </div><div class="line">        let requestURL = url</div><div class="line">        var requestMethod: HTTPMethod &#123;</div><div class="line">            get&#123;</div><div class="line">                return HTTPMethod(rawValue:method.rawValue)!</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //1,responseJSON</div><div class="line">        //开始状态栏菊花动画</div><div class="line">        startStatusNetworkActivity()</div><div class="line">        </div><div class="line">        let manager = customManager(timeoutInterval: TimeInterval(timeout))</div><div class="line">        </div><div class="line">        let request = manager.request(requestURL,</div><div class="line">                                      method: requestMethod,</div><div class="line">                                      parameters: params).responseJSON &#123;(returnResult) in</div><div class="line">            </div><div class="line">            //停止状态栏菊花动画</div><div class="line">            stopStatusNetworkActivity()</div><div class="line">            </div><div class="line">            switch returnResult.result &#123;</div><div class="line">            case .success(let value):</div><div class="line">                success(JSON(value))</div><div class="line">            case .failure(let error):</div><div class="line">                failed(FKError.infoError(error))</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">    </div><div class="line">        return request</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">extension API &#123;</div><div class="line">    </div><div class="line">    //same tools method</div><div class="line">    static func startStatusNetworkActivity() &#123;</div><div class="line">        UIApplication.shared.isNetworkActivityIndicatorVisible = true</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    static func stopStatusNetworkActivity() &#123;</div><div class="line">        UIApplication.shared.isNetworkActivityIndicatorVisible = false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于我们后台SSL证书还未配置完成，HTTPS请求都无法正常使用，需加入配置HTTPS请求的配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">extension API &#123;</div><div class="line">    /**</div><div class="line">     *manager可以访问HTTPS</div><div class="line">     */</div><div class="line">    static func customManager(timeoutInterval: TimeInterval) -&gt; Alamofire.SessionManager  &#123;</div><div class="line">        </div><div class="line">        let configuration = URLSessionConfiguration.default</div><div class="line">        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders</div><div class="line">        configuration.timeoutIntervalForRequest = timeoutInterval</div><div class="line">        let manager = SessionManager(configuration: configuration)</div><div class="line">        </div><div class="line">        manager.delegate.sessionDidReceiveChallenge = &#123; session, challenge in</div><div class="line">            var disposition: URLSession.AuthChallengeDisposition = .performDefaultHandling</div><div class="line">            var credential: URLCredential?</div><div class="line">            </div><div class="line">            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust &#123;</div><div class="line">                disposition = URLSession.AuthChallengeDisposition.useCredential</div><div class="line">                credential = URLCredential(trust: challenge.protectionSpace.serverTrust! )</div><div class="line">            &#125; else &#123;</div><div class="line">                if challenge.previousFailureCount &gt; 0 &#123;</div><div class="line">                    disposition = .cancelAuthenticationChallenge</div><div class="line">                &#125; else &#123;</div><div class="line">                    credential = manager.session.configuration.urlCredentialStorage?.defaultCredential(for: challenge.protectionSpace)</div><div class="line">                    </div><div class="line">                    if credential != nil &#123;</div><div class="line">                        disposition = .useCredential</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return (disposition, credential)</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return manager</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由此一个较为基础的请求入口基本完成。</p>
+<ul>
+<li>错误解析处理<code>FKRequestError</code><br>这里所做的是将错误解析，提取必要信息再返回的过程</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">struct FKError &#123;</div><div class="line">    </div><div class="line">    var code: Int</div><div class="line">    var url: String</div><div class="line">    var describ: String</div><div class="line">    </div><div class="line">    static func infoError(_ error: Error) -&gt; FKError &#123;</div><div class="line">        </div><div class="line">        var errorUrl: String?</div><div class="line">        var errorDiscrib: String?</div><div class="line">        </div><div class="line">        let localError = error as NSError</div><div class="line">        let errorCode = localError.code</div><div class="line">        let errorUserInfo = localError.userInfo</div><div class="line">        </div><div class="line">        if let u = errorUserInfo[&quot;NSErrorFailingURLStringKey&quot;] &#123;</div><div class="line">            errorUrl = u as? String</div><div class="line">        &#125;else&#123;</div><div class="line">            errorUrl = &quot;解析出错&quot;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        if let d = errorUserInfo[&quot;NSLocalizedDescription&quot;] &#123;</div><div class="line">            errorDiscrib = d as? String</div><div class="line">        &#125;else&#123;</div><div class="line">            errorDiscrib = &quot;解析出错&quot;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        let customError = FKError(code: errorCode, url:errorUrl!, describ: errorDiscrib!)</div><div class="line">        </div><div class="line">        return customError</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>请求的URL将集中存放在FKRequestURL中</li>
+<li>请求接口实现FKRequestManager<br>将在此文件中实现网络请求的具体接口，包括URL拼接、参数拼接、请求方式和请求超时时间的设置<br>举个栗子：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> *获取服务网点的省份信息</div><div class="line"> */</div><div class="line">@discardableResult</div><div class="line">static func</div><div class="line">province(success: @escaping (JSON) -&gt; Void, failed: @escaping (FKError) -&gt; Void)</div><div class="line">    -&gt; DataRequest&#123;</div><div class="line">    let params: [String:Any] = [&quot;api_key&quot; : &quot;1439860175&quot;,</div><div class="line">                                    &quot;api_name&quot; : &quot;APP&quot;,</div><div class="line">                                    &quot;api_token&quot; : &quot;a84d0a6e3937c5b532592b1eb4f8f6b7&quot;]</div><div class="line">    let request = API.start(url: NOBaseURL.province,</div><div class="line">                            params: params,</div><div class="line">                            method: .GET,</div><div class="line">                            timeout: 10,</div><div class="line">                            success: &#123;success($0)&#125;,failed: &#123;failed($0)&#125;)</div><div class="line">    return request</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样一个基础的网络框架基本成型，大致的功能也都具备。之后需要添加预想的功能：请求失败缓存重新请求、文件上传下载断点续传等。</p>
+<p>###总结<br>整个过程需要在动手写代码之前在脑中预演一遍，考虑到需要实现的功能，需要规避的问题，实现思路是怎样的，有哪些难点和重点需要注意的，再动手写代码就会得心应手很多，写出来的代码也会有较高的可读性和安全性。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Swift从0到1/" rel="tag"># Swift从0到1</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/03/第三周-cocoapods和第三方框架/" rel="next" title="第三周：Cocoapods和一些常用的第三方框架">
+                <i class="fa fa-chevron-left"></i> 第三周：Cocoapods和一些常用的第三方框架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="maxmoo" />
+          <p class="site-author-name" itemprop="name">maxmoo</p>
+           
+              <p class="site-description motion-element" itemprop="description">iOSAPP从0到1博客</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">maxmoo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://maxmoo.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://flycoit.com/2017/08/25/第四周-网络框架/';
+          this.page.identifier = '2017/08/25/第四周-网络框架/';
+          this.page.title = '第四周：Alamofire网络框架之二次封装';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://maxmoo.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
