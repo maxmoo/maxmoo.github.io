@@ -247,6 +247,147 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/10/24/拓展-导航栏的灵活运用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="maxmoo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞科智能">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/24/拓展-导航栏的灵活运用/" itemprop="url">拓展：导航栏的灵活运用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T16:02:22+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/24/拓展-导航栏的灵活运用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/24/拓展-导航栏的灵活运用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。
+分析导航栏结构
+使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器
+
+图层显示如下图：
+图层列表如下：
+将二者结合起来看，找出对应关系
+
+
+图中蓝色部分是设置了导航栏背景色，绿色线条指向视图UIView为自定义视图，下面会详细讲到。self.navigationController?.navigationBar.setBackgroundImage(UIImage(named:&quot;navibar_bg_blue&quot;), for: .default)
+确定方案
+由上方图层可知，控制导航栏颜色的是一个UIImageView，需要完成各
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/24/拓展-导航栏的灵活运用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://flycoit.com/2017/08/25/第四周-网络框架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -846,7 +987,7 @@ StoryBoard是可视化的图形界面编辑载体，在页面跳转逻辑上也�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
