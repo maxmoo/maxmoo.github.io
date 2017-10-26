@@ -330,17 +330,15 @@
 问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。
 分析导航栏结构
 使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器
-
 图层显示如下图：
 图层列表如下：
 将二者结合起来看，找出对应关系
-
 
 图中蓝色部分是设置了导航栏背景色，绿色线条指向视图UIView为自定义视图，下面会详细讲到。self.navigationController?.navigationBar.setBackgroundImage(UIImage(named:&quot;navibar_bg_blue&quot;), for: .default)
 
 
 确定方案
-由上方图层可知，控制导航栏颜色的是一个UIImageView，需要完
+由上方图层可知，控制导航栏颜色的是一个UIImageView，需要完成各
           ...
           <!--noindex-->
           <div class="post-button text-center">

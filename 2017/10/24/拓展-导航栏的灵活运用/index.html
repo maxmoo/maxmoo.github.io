@@ -93,23 +93,23 @@
 
 
 
-<meta name="description" content="问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。 分析导航栏结构 使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器  图层显示如下图： 图层列表如下： 将二者结合起来看，找出对应关系   图中蓝色部分">
+<meta name="description" content="问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。 分析导航栏结构 使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器 图层显示如下图： 图层列表如下： 将二者结合起来看，找出对应关系  图中蓝色部分是设">
 <meta name="keywords" content="拓展">
 <meta property="og:type" content="article">
 <meta property="og:title" content="拓展：导航栏的灵活运用">
 <meta property="og:url" content="http://flycoit.com/2017/10/24/拓展-导航栏的灵活运用/index.html">
 <meta property="og:site_name" content="MAXMOO">
-<meta property="og:description" content="问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。 分析导航栏结构 使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器  图层显示如下图： 图层列表如下： 将二者结合起来看，找出对应关系   图中蓝色部分">
+<meta property="og:description" content="问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。 分析导航栏结构 使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器 图层显示如下图： 图层列表如下： 将二者结合起来看，找出对应关系  图中蓝色部分是设">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.zcool.cn/community/019fac554462c60000019ae9f2e523.jpg@1280w_1l_2o_100sh.jpg">
 <meta property="og:image" content="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/nav.png?raw=true">
 <meta property="og:image" content="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/list.png?raw=true">
 <meta property="og:image" content="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/newLine.png?raw=true">
 <meta property="og:image" content="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/1.gif?raw=true">
-<meta property="og:updated_time" content="2017-10-26T06:39:54.000Z">
+<meta property="og:updated_time" content="2017-10-26T06:44:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拓展：导航栏的灵活运用">
-<meta name="twitter:description" content="问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。 分析导航栏结构 使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器  图层显示如下图： 图层列表如下： 将二者结合起来看，找出对应关系   图中蓝色部分">
+<meta name="twitter:description" content="问题由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。 分析导航栏结构 使用XCode中的Debug View Hierarchy模式打开一个具有导航栏的控制器 图层显示如下图： 图层列表如下： 将二者结合起来看，找出对应关系  图中蓝色部分是设">
 <meta name="twitter:image" content="http://img.zcool.cn/community/019fac554462c60000019ae9f2e523.jpg@1280w_1l_2o_100sh.jpg">
 
 
@@ -331,12 +331,10 @@
         <p><img src="http://img.zcool.cn/community/019fac554462c60000019ae9f2e523.jpg@1280w_1l_2o_100sh.jpg" alt="起点"></p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p><code>由于项目的迭代和持续开发，项目变得越来越大，对于导航栏这一块的要求也越来越高，系统导航栏早已不能满足需求（例如：透明，颜色变化，高度变化等），为了方便以后的开发和更改，一套成熟的自定义导航系统是必需的。</code></p>
 <h3 id="分析导航栏结构"><a href="#分析导航栏结构" class="headerlink" title="分析导航栏结构"></a>分析导航栏结构</h3><ul>
-<li><p>使用<code>XCode</code>中的<code>Debug View Hierarchy</code>模式打开一个具有导航栏的控制器</p>
-<ul>
+<li>使用<code>XCode</code>中的<code>Debug View Hierarchy</code>模式打开一个具有导航栏的控制器</li>
 <li>图层显示如下图：<br><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/nav.png?raw=true" alt="图层结构"></li>
 <li>图层列表如下：<br><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/list.png?raw=true" alt="图层列表"></li>
-<li>将二者结合起来看，找出对应关系<br><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/newLine.png?raw=true" alt="对应关系"></li>
-</ul>
+<li><p>将二者结合起来看，找出对应关系<br><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/newLine.png?raw=true" alt="对应关系"></p>
 </li>
 <li><p>图中蓝色部分是设置了导航栏背景色，绿色线条指向视图<code>UIView</code>为自定义视图，下面会详细讲到。<br><code>self.navigationController?.navigationBar.setBackgroundImage(UIImage(named:&quot;navibar_bg_blue&quot;), for: .default)</code></p>
 </li>
@@ -359,7 +357,7 @@
 </li>
 </ul>
 <p><code>这样就大致的利用分类构建了一套改变导航栏颜色的方案</code><br><img src="https://github.com/maxmoo/maxmoo.github.io/blob/master/blogImages/section5/1.gif?raw=true" alt="完成示例"></p>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>在这里简单介绍一下另一种导航栏自定义颜色方案，类似于网易云音乐导航栏。<br><a href="http://jerrytian.com/2016/01/07/%E7%94%A8Reveal%E5%88%86%E6%9E%90%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E7%9A%84%E5%AF%BC%E8%88%AA%E6%8E%A7%E5%88%B6%E5%99%A8%E5%88%87%E6%8D%A2%E6%95%88%E6%9E%9C/" target="_blank" rel="external">这里附上链接:http://jerrytian.com/2016/01/07/%E7%94%A8Reveal%E5%88%86%E6%9E%90%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E7%9A%84%E5%AF%BC%E8%88%AA%E6%8E%A7%E5%88%B6%E5%99%A8%E5%88%87%E6%8D%A2%E6%95%88%E6%9E%9C/</a></p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>在这里简单介绍一下另一种导航栏自定义颜色方案，类似于网易云音乐导航栏。<br><a href="http://jerrytian.com/2016/01/07/%E7%94%A8Reveal%E5%88%86%E6%9E%90%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E7%9A%84%E5%AF%BC%E8%88%AA%E6%8E%A7%E5%88%B6%E5%99%A8%E5%88%87%E6%8D%A2%E6%95%88%E6%9E%9C/" target="_blank" rel="external">这里附上链接:http://jerrytian.com/</a></p>
 
       
     </div>
